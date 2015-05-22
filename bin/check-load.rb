@@ -23,8 +23,7 @@
 #   for details.
 #
 
-
-  # round(n) doesn't exist in ruby < 1.9
+# round(n) doesn't exist in ruby < 1.9
 class Float
   alias_method :oldround, :round
 
