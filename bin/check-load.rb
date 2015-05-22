@@ -23,8 +23,6 @@
 #   for details.
 #
 
-if RUBY_VERSION < '1.9.0'
-  require 'rubygems'
 
   # round(n) doesn't exist in ruby < 1.9
   class Float
