@@ -64,7 +64,7 @@ class LoadStat < Sensu::Plugin::Metric::CLI::Graphite
          default: false
 
   def number_of_cores
-    @cores ||= File.readlines('/proc/cpuinfo').select { |l| l =~ /^processor\s+:/ }.count
+    @cores ||= File.readlines('/proc/cpuinfo').count { |l| l =~ /^processor\s+:/ }
   end
 
   def run
