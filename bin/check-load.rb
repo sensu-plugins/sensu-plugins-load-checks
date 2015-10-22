@@ -45,7 +45,7 @@ class LoadAverage
   end
 
   def cpu_count
-    `grep -sc ^processor /proc/cpuinfo`.to_i rescue 0
+    File.read('/proc/cpuinfo').scan(/^processor/).count rescue 0
   end
 
   def failed?
