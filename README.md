@@ -11,7 +11,7 @@
 
 ## Files
  * bin/check-load.rb
- * bin/metircs-load.rb
+ * bin/metrics-load.rb
 
 ## Usage
 
