@@ -1,19 +1,33 @@
 language: ruby
 cache:
-  - bundler
+- bundler
 install:
-  - bundle install
+- bundle install
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
-  - 2.2
+- 1.9.3
+- 2.0
+- 2.1
+- 2.2
 notifications:
   email:
     recipients:
-      - sensu-plugin@sensu-plugins.io
+    - sensu-plugin@sensu-plugins.io
     on_success: change
     on_failure: always
-
 script:
-  - 'bundle exec rake default'
+- bundle exec rake default
+- gem build sensu-plugins-load-checks.gemspec
+- gem install sensu-plugins-load-checks-*.gem
+deploy:
+  provider: rubygems
+  api_key:
+    secure: J19rBhFsEYozDnd5nAqLVGldCJRsyT5//9ZqbbtLIxgnoNllEPA0Qq3X358zkjZ8b1L+JrnRjv+/WyXNrUkXMP0/YLgy5T1rG90HhGp2dqXacF20Tj/6so4y8S4WKv7Y3Kf4vdxQFlPPBOaYzhvDkeIQuPUBxjMHvpmvsrK3RPg=
+  gem: sensu-plugins-load-checks
+  on:
+    tags: true
+    all_branches: true
+    rvm: 1.9.3
+    rvm: 2.0
+    rvm: 2.1
+    rvm: 2.2
+    repo: sensu-plugins/sensu-plugins-load-checks

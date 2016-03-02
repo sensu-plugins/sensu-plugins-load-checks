@@ -25,13 +25,13 @@
 
 # round(n) doesn't exist in ruby < 1.9
 class Float
-  alias_method :oldround, :round
+  alias oldround round
 
   def round(precision = nil)
-    if precision.nil?
+    if precision.nil? # rubocop:disable Style/GuardClause
       return self
     else
-      return ((self * 10**precision).oldround.to_f) / (10**precision)
+      return (self * 10**precision).oldround.to_f / (10**precision)
     end
   end
 end
@@ -45,7 +45,9 @@ class LoadAverage
   end
 
   def cpu_count
-    File.read('/proc/cpuinfo').scan(/^processor/).count rescue 0
+    File.read('/proc/cpuinfo').scan(/^processor/).count
+  rescue
+    0
   end
 
   def failed?
