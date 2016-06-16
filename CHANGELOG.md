@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [1.0.0] - 2016-06-16
 ### Changed
 - Loosen dependency on sensu-plugin from `= 1.2.0` to `~> 1.2`
 - Update Rubocop to 0.40, apply auto-correct.
@@ -30,7 +32,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/0.0.4...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/0.0.4...1.0.0
 [0.0.4]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/0.0.2...0.0.3
 [0.0.2]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/0.0.1...0.0.2
