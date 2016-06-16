@@ -23,19 +23,6 @@
 #   for details.
 #
 
-# round(n) doesn't exist in ruby < 1.9
-class Float
-  alias oldround round
-
-  def round(precision = nil)
-    if precision.nil? # rubocop:disable Style/GuardClause
-      return self
-    else
-      return (self * 10**precision).oldround.to_f / (10**precision)
-    end
-  end
-end
-
 require 'sensu-plugin/check/cli'
 
 class LoadAverage

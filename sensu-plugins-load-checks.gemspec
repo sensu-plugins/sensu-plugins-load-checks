@@ -2,18 +2,10 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'date'
-
-if RUBY_VERSION < '2.0.0'
-  require 'sensu-plugins-load-checks'
-else
-  require_relative 'lib/sensu-plugins-load-checks'
-end
-
-# pvt_key = '~/.ssh/gem-private_key.pem'
+require_relative 'lib/sensu-plugins-load-checks'
 
 Gem::Specification.new do |s|
   s.authors                = ['Sensu-Plugins and contributors']
-  # s.cert_chain             = ['certs/sensu-plugins.pem']
   s.date                   = Date.today.to_s
   s.description            = 'This plugin provides native load instrumentation
                               for monitoring and metrics collection, including:
@@ -33,7 +25,7 @@ Gem::Specification.new do |s|
   s.platform               = Gem::Platform::RUBY
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
   s.require_paths          = ['lib']
-  s.required_ruby_version  = '>= 1.9.3'
+  s.required_ruby_version  = '>= 2.0.0'
   # s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
   s.summary                = 'Sensu plugins for load checks'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
