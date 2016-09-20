@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Changed
+- bin/check-load.rb change the default of per_core to true
+- bin/check-load.rb change the default thresholds to better align with per_core values
+- bin/check-load.rb changes to use >= rather than > for thresholds
+- bin/check-load.rb switch to using 'unknown' rather than 'warning' when unable to determine the load average
 
 ## [1.0.0] - 2016-06-16
 ### Changed
