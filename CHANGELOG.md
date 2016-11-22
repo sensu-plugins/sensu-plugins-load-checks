@@ -5,6 +5,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 ### Changed
+- Use the `uptime` command in bin/check-load.rb as well
+- Correctly detect the number of cores on BSD
 - bin/check-load.rb change the default of per_core to true
 - bin/check-load.rb change the default thresholds to better align with per_core values
 - bin/check-load.rb changes to use >= rather than > for thresholds
