@@ -8,7 +8,7 @@
 #   plain text
 #
 # PLATFORMS:
-#   Linux
+#   Linux, BSD, Solaris, etc
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
@@ -28,11 +28,23 @@ require 'sensu-plugin/check/cli'
 class LoadAverage
   def initialize(per_core = true)
     @cores = per_core ? cpu_count : 1
-    @avg = File.read('/proc/loadavg').split.take(3).map { |a| (a.to_f / @cores).round(2) } rescue nil # rubocop:disable RescueModifier
+    @avg = loadavg.map { |a| (a.to_f / @cores).round(2) } rescue nil # rubocop:disable RescueModifier
+  end
+
+  def load_avg
+    if File.exist?('/proc/loadavg')
+      File.read('/proc/loadavg').split.take(3)
+    else
+      `uptime`.delete(',').split(' ')[-3..-1]
+    end
   end
 
   def cpu_count
-    File.read('/proc/cpuinfo').scan(/^processor/).count
+    if File.exist?('/proc/cpuinfo')
+      File.read('/proc/cpuinfo').scan(/^processor/).count
+    else
+      `sysctl -n hw.ncpu`.to_i
+    end
   rescue
     0
   end
