@@ -50,7 +50,7 @@ class LoadAverage
   end
 
   def total
-    @avg.map { |a| (a * @cores)}.join(', ')
+    @avg.map { |a| (a * @cores) }.join(', ')
   end
 end
 
@@ -80,10 +80,10 @@ class CheckLoad < Sensu::Plugin::Check::CLI
     avg = LoadAverage.new(config[:per_core])
     unknown 'Could not read load average from /proc' if avg.failed?
 
-    if config[:per_core] and avg.cpu_count > 1
-        message "Per core load average (#{avg.cpu_count} CPU): #{avg} - Total: #{avg.total}"
+    if config[:per_core] && avg.cpu_count > 1
+      message "Per core load average (#{avg.cpu_count} CPU): #{avg} - Total: #{avg.total}"
     else
-        message "Total load average (#{avg.cpu_count} CPU): #{avg}"
+      message "Total load average (#{avg.cpu_count} CPU): #{avg}"
     end
 
     critical if avg.exceed?(config[:crit])
