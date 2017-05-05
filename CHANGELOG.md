@@ -4,13 +4,17 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### [2.0.0]
+### Breaking Change
+- bin/check-load.rb change the default of per_core to true (@majormoses)
+
 ### Changed
-- Use the `uptime` command in bin/check-load.rb as well
-- Correctly detect the number of cores on BSD
-- bin/check-load.rb change the default of per_core to true
-- bin/check-load.rb change the default thresholds to better align with per_core values
-- bin/check-load.rb changes to use >= rather than > for thresholds
-- bin/check-load.rb switch to using 'unknown' rather than 'warning' when unable to determine the load average
+- Use the `uptime` command in bin/check-load.rb as well (@smuth4)
+- Correctly detect the number of cores on BSD (@smuth4)
+- bin/check-load.rb better output message (@woltage)
+- bin/check-load.rb change the default thresholds to better align with per_core values (@majormoses)
+- bin/check-load.rb changes to use >= rather than > for thresholds (@majormoses)
+- bin/check-load.rb switch to using 'unknown' rather than 'warning' when unable to determine the load average (@majormoses)
 
 ## [1.0.0] - 2016-06-16
 ### Changed
@@ -39,7 +43,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/2.0.0...HEAD
+[2.0.0]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/1.0.0...2.0.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/0.0.4...1.0.0
 [0.0.4]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/0.0.3...0.0.4
 [0.0.3]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/0.0.2...0.0.3
