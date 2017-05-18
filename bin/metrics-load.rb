@@ -21,7 +21,7 @@
 #   metric data
 #
 # PLATFORMS:
-#   Linux, Windows, BSD, Solaris, etc
+#   Linux, BSD, Solaris, etc
 #
 # DEPENDENCIES:
 #   gem: sensu-plugin
@@ -38,6 +38,7 @@
 #
 
 require 'sensu-plugin/metric/cli'
+require_relative '../lib/sensu-plugins-load-checks/load-average.rb'
 require 'socket'
 
 class LoadStat < Sensu::Plugin::Metric::CLI::Graphite
@@ -46,43 +47,18 @@ class LoadStat < Sensu::Plugin::Metric::CLI::Graphite
          long: '--scheme SCHEME',
          default: Socket.gethostname.to_s
 
-  option :per_core,
-         description: 'Divide load average results by cpu/core count',
-         short: '-p',
-         long: '--per-core',
-         boolean: true,
-         default: false
-
-  def number_of_cores
-    @cores ||= if File.exist?('/proc/cpuinfo')
-                 File.read('/proc/cpuinfo').scan(/^processor/).count
-               else
-                 `sysctl -n hw.ncpu`.to_i
-               end
-  end
-
   def run
-    result = `uptime`.delete(',').split(' ')
-    result = result[-3..-1]
+    data = LoadAverage.new
+    unknown 'Could not read load average from /proc or `uptime`' if data.failed?
 
     timestamp = Time.now.to_i
-    if config[:per_core]
-      metrics = {
-        load_avg: {
-          one: (result[0].to_f / number_of_cores).round(2),
-          five: (result[1].to_f / number_of_cores).round(2),
-          fifteen: (result[2].to_f / number_of_cores).round(2)
-        }
+    metrics = {
+      load_avg: {
+        one: data.load_avg[0].round(2),
+        five: data.load_avg[1].round(2),
+        fifteen: data.load_avg[2].round(2)
       }
-    else
-      metrics = {
-        load_avg: {
-          one: result[0],
-          five: result[1],
-          fifteen: result[2]
-        }
-      }
-    end
+    }
 
     metrics.each do |parent, children|
       children.each do |child, value|

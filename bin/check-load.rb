@@ -24,47 +24,7 @@
 #
 
 require 'sensu-plugin/check/cli'
-
-class LoadAverage
-  def initialize(per_core = true)
-    @cores = per_core ? cpu_count : 1
-    @avg = load_avg.map { |a| (a.to_f / @cores).round(2) } rescue nil # rubocop:disable RescueModifier
-  end
-
-  def load_avg
-    if File.exist?('/proc/loadavg')
-      File.read('/proc/loadavg').split.take(3)
-    else
-      `uptime`.delete(',').split(' ')[-3..-1]
-    end
-  end
-
-  def cpu_count
-    if File.exist?('/proc/cpuinfo')
-      File.read('/proc/cpuinfo').scan(/^processor/).count
-    else
-      `sysctl -n hw.ncpu`.to_i
-    end
-  rescue
-    0
-  end
-
-  def failed?
-    @avg.nil? || @cores.zero?
-  end
-
-  def exceed?(thresholds)
-    @avg.zip(thresholds).any? { |a, t| a >= t }
-  end
-
-  def to_s
-    @avg.join(', ')
-  end
-
-  def total
-    @avg.map { |a| (a * @cores) }.join(', ')
-  end
-end
+require_relative '../lib/sensu-plugins-load-checks/load-average.rb'
 
 class CheckLoad < Sensu::Plugin::Check::CLI
   option :warn,
@@ -81,25 +41,14 @@ class CheckLoad < Sensu::Plugin::Check::CLI
          proc: proc { |a| a.split(',').map(&:to_f) },
          default: [3.5, 3.25, 3.0]
 
-  option :per_core,
-         short: '-p',
-         long: '--per-core',
-         description: 'Divide load average results by cpu/core count',
-         boolean: 'true',
-         default: true
-
   def run
-    avg = LoadAverage.new(config[:per_core])
-    unknown 'Could not read load average from /proc' if avg.failed?
+    data = LoadAverage.new
+    unknown 'Could not read load average from /proc or `uptime`' if data.failed?
 
-    if config[:per_core] && avg.cpu_count > 1
-      message "Per core load average (#{avg.cpu_count} CPU): #{avg} - Total: #{avg.total}"
-    else
-      message "Total load average (#{avg.cpu_count} CPU): #{avg}"
-    end
+    message "Per core load average (#{data.cpu_count} CPU): #{data.load_avg}"
 
-    critical if avg.exceed?(config[:crit])
-    warning if avg.exceed?(config[:warn])
+    critical if data.exceed?(config[:crit])
+    warning if data.exceed?(config[:warn])
     ok
   end
 end
