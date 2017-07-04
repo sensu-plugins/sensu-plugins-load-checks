@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Added
+- added ruby 2.4 testing (@majormoses)
+
+### Fixed
+- PR template spelling (@majormoses)
+
 ## [3.0.0]
 ### Breaking Change
 - bin/check-load.rb remove option for per_core as its useless and broken (@majormoses)
