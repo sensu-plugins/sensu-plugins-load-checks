@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## [Unreleased]
 ### Added
+- now includes kitchen integration tests
+
+### Added
 - added ruby 2.4 testing (@majormoses)
 
 ### Fixed
