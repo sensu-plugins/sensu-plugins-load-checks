@@ -6,7 +6,7 @@ require 'rubocop/rake_task'
 require 'yard'
 require 'yard/rake/yardoc_task'
 
-args = [:spec, :make_bin_executable, :yard, :rubocop, :check_binstubs :integration]
+args = [:spec, :make_bin_executable, :yard, :rubocop, :check_binstubs, :integration]
 
 YARD::Rake::YardocTask.new do |t|
   OTHER_PATHS = %w().freeze
