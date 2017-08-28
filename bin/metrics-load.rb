@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 #  encoding: UTF-8
-#   <script name>
+
 #
 # DESCRIPTION:
 #   This plugin uses uptime to collect load metrics

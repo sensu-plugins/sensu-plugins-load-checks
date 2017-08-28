@@ -16,17 +16,17 @@ describe file(check) do
   it { should be_executable }
 end
 
-describe command("#{check}") do
-      its(:exit_status) { should eq 0 }
-      its(:stdout) { should match /CheckLoad OK: Per core load average \([\d+] CPU\)\: \[[\d]+.[\d]+, [\d]+.[\d]+, [\d]+.[\d]+\]/ }
+describe command(check.to_s) do
+  its(:exit_status) { should eq 0 }
+  its(:stdout) { should match(/CheckLoad OK: Per core load average \([\d+] CPU\)\: \[[\d]+.[\d]+, [\d]+.[\d]+, [\d]+.[\d]+\]/) }
 end
 
 describe command("#{check} -w 0") do
-      its(:exit_status) { should eq 1 }
-      its(:stdout) { should match /CheckLoad WARNING: Per core load average \([\d+] CPU\)\: \[[\d]+.[\d]+, [\d]+.[\d]+, [\d]+.[\d]+\]/ }
+  its(:exit_status) { should eq 1 }
+  its(:stdout) { should match(/CheckLoad WARNING: Per core load average \([\d+] CPU\)\: \[[\d]+.[\d]+, [\d]+.[\d]+, [\d]+.[\d]+\]/) }
 end
 
 describe command("#{check} -c 0") do
-      its(:exit_status) { should eq 2 }
-      its(:stdout) { should match /CheckLoad CRITICAL: Per core load average \([\d+] CPU\)\: \[[\d]+.[\d]+, [\d]+.[\d]+, [\d]+.[\d]+\]/ }
+  its(:exit_status) { should eq 2 }
+  its(:stdout) { should match(/CheckLoad CRITICAL: Per core load average \([\d+] CPU\)\: \[[\d]+.[\d]+, [\d]+.[\d]+, [\d]+.[\d]+\]/) }
 end
