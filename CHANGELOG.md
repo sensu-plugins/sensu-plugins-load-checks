@@ -1,9 +1,11 @@
-#Change Log
+# Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+## [4.0.0] - 2017-10-03
 ### Breaking Changes
 - dropped support for Ruby 2.0.0 (@barryorourke)
 
@@ -11,10 +13,14 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 - now includes kitchen integration tests (@barryorourke)
 - added ruby 2.4 testing (@majormoses)
 
+### Changed
+- updated the changelog location guidelines (@majormoses)
+
 ### Fixed
 - PR template spelling (@majormoses)
+- make changelog a title (@majormoses)
 
-## [3.0.0]
+## [3.0.0] - 05-18-2017
 ### Breaking Change
 - bin/check-load.rb remove option for per_core as its useless and broken (@majormoses)
 - bin/metrics-load.rb remove option for per_core as its useless and broken (@majormoses)
@@ -62,7 +68,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/3.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/4.0.0...HEAD
+[4.0.0]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/3.0.0...4.0.0
 [3.0.0]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/1.0.0...2.0.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/0.0.4...1.0.0
