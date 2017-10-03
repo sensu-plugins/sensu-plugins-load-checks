@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Breaking Changes
+- dropped support for Ruby 2.0.0 (@barryorourke)
+
 ### Added
 - now includes kitchen integration tests (@barryorourke)
 - added ruby 2.4 testing (@majormoses)
