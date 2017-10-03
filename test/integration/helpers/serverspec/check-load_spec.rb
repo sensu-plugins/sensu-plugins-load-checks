@@ -11,11 +11,6 @@ describe 'ruby environment' do
   it_behaves_like 'ruby checks', check
 end
 
-describe file(check) do
-  it { should be_file }
-  it { should be_executable }
-end
-
 describe command(check.to_s) do
   its(:exit_status) { should eq 0 }
   its(:stdout) { should match(/CheckLoad OK: Per core load average \([\d+] CPU\)\: \[[\d]+.[\d]+, [\d]+.[\d]+, [\d]+.[\d]+\]/) }

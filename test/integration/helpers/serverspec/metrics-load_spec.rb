@@ -11,11 +11,6 @@ describe 'ruby environment' do
   it_behaves_like 'ruby checks', check
 end
 
-describe file(check.to_s) do
-  it { should be_file }
-  it { should be_executable }
-end
-
 describe command(check.to_s) do
   its(:exit_status) { should eq 0 }
   its(:stdout) { should match(/[\w]+.load_avg.one [\d+].[\d]+ [\d]+\n[\w]+.load_avg.five [\d+].[\d]+ [\d]+\n[\w]+.load_avg.fifteen [\d+].[\d]+ [\d]+\n/) }
