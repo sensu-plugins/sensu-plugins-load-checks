@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+### Fixed
+- use the `quick` tests as we want to not run all integration tests just the requested suites (@majormoses)
+
 ## [4.0.0] - 2017-10-03
 ### Breaking Changes
 - dropped support for Ruby 2.0.0 (@barryorourke)
