@@ -4,8 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+### Security
+- updated rubocop dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@majormoses)
+
+### Changed
+- appeased the cops (@majormoses)
+
 ### Fixed
-- Remove the comment explaining the per-cores flag from the merics-load.rb file as this option no longer exists
+- Remove the comment explaining the per-cores flag from the merics-load.rb file as this option no longer exists (@AaronKalair)
 
 ### Fixed
 - use the `quick` tests as we want to not run all integration tests just the requested suites (@majormoses)

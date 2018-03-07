@@ -20,7 +20,7 @@ class LoadAverage
     else
       `sysctl -n hw.ncpu`.to_i
     end
-  rescue
+  rescue StandardError
     0
   end
 
