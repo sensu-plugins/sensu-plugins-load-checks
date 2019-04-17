@@ -16,7 +16,7 @@ notifications:
     on_failure: always
 script:
 - bundle exec rake quick
-- bundle exec rake kitchen:ruby-`echo $TRAVIS_RUBY_VERSION | sed -e "s/\.//g"`-debian-8
+#- bundle exec rake kitchen:ruby-`echo $TRAVIS_RUBY_VERSION | sed -e "s/\.//g"`-debian-8
 - gem build sensu-plugins-load-checks.gemspec
 - gem install sensu-plugins-load-checks-*.gem
 before_deploy:
