@@ -6,8 +6,6 @@ cache:
 install:
 - bundle install
 rvm:
-- 2.1
-- 2.2
 - 2.3.0
 - 2.4.1
 notifications:
@@ -18,19 +16,27 @@ notifications:
     on_failure: always
 script:
 - bundle exec rake quick
-- bundle exec rake kitchen:ruby-`echo $TRAVIS_RUBY_VERSION | sed -e "s/\.//g"`-debian-8
+#- bundle exec rake kitchen:ruby-`echo $TRAVIS_RUBY_VERSION | sed -e "s/\.//g"`-debian-8
 - gem build sensu-plugins-load-checks.gemspec
 - gem install sensu-plugins-load-checks-*.gem
+before_deploy:
+- bash -c "[ ! -d bonsai/ ] && git clone https://github.com/sensu/sensu-go-bonsai-asset.git bonsai || echo 'bonsai/ exists, skipping git clone'"
 deploy:
-  provider: rubygems
+- provider: rubygems
   api_key:
     secure: J19rBhFsEYozDnd5nAqLVGldCJRsyT5//9ZqbbtLIxgnoNllEPA0Qq3X358zkjZ8b1L+JrnRjv+/WyXNrUkXMP0/YLgy5T1rG90HhGp2dqXacF20Tj/6so4y8S4WKv7Y3Kf4vdxQFlPPBOaYzhvDkeIQuPUBxjMHvpmvsrK3RPg=
   gem: sensu-plugins-load-checks
   on:
     tags: true
     all_branches: true
-    rvm: 2.1
-    rvm: 2.2
     rvm: 2.3.0
     rvm: 2.4.1
     repo: sensu-plugins/sensu-plugins-load-checks
+- provider: script
+  script: bonsai/ruby-runtime/travis-build-ruby-plugin-assets.sh sensu-plugins-load-checks
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+    rvm: 2.4.1
+
