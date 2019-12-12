@@ -5,6 +5,7 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [5.1.0] - 2019-12-12
 ### Added
 - Updated asset build targets to support centos6
 
@@ -98,7 +99,8 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/5.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/5.1.0...HEAD
+[5.1.0]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/5.0.0...5.1.0
 [5.0.0]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/4.0.2...5.0.0
 [4.0.2]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/4.0.1...4.0.2
 [4.0.1]: https://github.com/sensu-plugins/sensu-plugins-load-checks/compare/4.0.0...4.0.1
